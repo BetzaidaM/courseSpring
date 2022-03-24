@@ -53,11 +53,11 @@ public class Student {
             cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
             fetch = FetchType.LAZY
     )
-    private List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<>();//Libros disponibles en la tabla
 
     @OneToOne(
             mappedBy = "student", //quien hace referencia es el student, o sea esta del otro lado, nombre variable que se debe usar para referenciarlo
-            orphanRemoval = true, //si se eliminan datos, se eliminan los que no tienen clase padre (Student)
+            orphanRemoval = true, //si se eliminan datos, se eliminan los que no tienen clase padre (Student. Se elimina si se queda sin relaciones
             cascade = {CascadeType.PERSIST,CascadeType.REMOVE} //en que momentos se mantiene la integridad, si se elimina un studiante se elimina su card
     )//hacer referencia al card
     //al estar el OneTooOne en ambas se refiere a que ya existe la conexion bidireccional
@@ -130,6 +130,9 @@ public class Student {
     }
     //methods
     public void addBook(Book book) {
+       for(Book book1 : this.books){
+           System.out.println(book1.toString());
+       }
         if (!this.books.contains(book)) {
             this.books.add(book);
             book.setStudent(this);
@@ -146,7 +149,7 @@ public class Student {
     }
     public void addEnrolment(Enrolment enrolment) {
         if (!enrolments.contains(enrolment)) {
-            enrolments.add(enrolment);
+            enrolments.add(enrolment);//añade a la lista un nuevo enrolment
         }
     }
     public List<Book> getBooks() {

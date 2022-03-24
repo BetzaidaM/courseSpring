@@ -63,7 +63,7 @@ public class MyschoolApplication {
 			studentRepository.findById(1L)
 					.ifPresent(s -> {//es un if y ejecuta lo que esta en la funcion si es true, si no, en este caso no hace nada
 						System.out.println("fetch book lazy...");
-						List<Book> books = student.getBooks();
+						List<Book> books = student.getBooks(); //mandar llamar la lista de libros
 						books.forEach(book -> {
 							System.out.println(
 									s.getFirstName() + " borrowed " + book.getBookName());

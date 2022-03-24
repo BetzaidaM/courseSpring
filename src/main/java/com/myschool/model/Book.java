@@ -75,4 +75,8 @@ public class Book {
     public void setStudent(Student student) {
         this.student = student;
     }
+
+    public String toString(){
+        return "name: "+this.bookName+", date: "+this.createdAt+",id: "+this.id;
+    }
 }
